@@ -40,17 +40,17 @@ $(Build.Repository.LocalPath)/libraries/python/dbxdemo/test*.py || true
 
   displayName:'Run Python Unit Tests for library code'
 
-- task: PublishTestResults@2
+- task:PublishTestResults@2
   inputs:
-    testResultsFiles: '**/TEST-*.xml'
-    failTaskOnFailedTests: true
-    publishRunAttachments: true
+    testResultsFiles:'**/TEST-*.xml'
+    failTaskOnFailedTests:true
+    publishRunAttachments:true
 
 - script: |
     cd $(Build.Repository.LocalPath)/libraries/python/dbxdemo
     python3 setup.py sdist bdist_wheel
     ls dist/
-  displayName: 'Build Python Wheel for Libs'
+  displayName:'Build Python Wheel for Libs'
 
 - script: |
     git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp --parents -r '{}' $(Build.BinariesDirectory)
@@ -61,16 +61,16 @@ $(Build.Repository.LocalPath)/libraries/python/dbxdemo/test*.py || true
     mkdir -p $(Build.BinariesDirectory)/cicd-scripts
     cp $(Build.Repository.LocalPath)/cicd-scripts/*.* $(Build.BinariesDirectory)/cicd-scripts
 
-  displayName: 'Get Changes'
+  displayName:'Get Changes'
 
-- task: ArchiveFiles@2
+- task:ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: false
-    archiveType: 'zip'
+    rootFolderOrFile:'$(Build.BinariesDirectory)'
+    includeRootFolder:false
+    archiveType:'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
 
-- task: PublishBuildArtifacts@1
+- task:PublishBuildArtifacts@1
   inputs:
-    ArtifactName: 'DatabricksBuild'
+    ArtifactName:'DatabricksBuild'
