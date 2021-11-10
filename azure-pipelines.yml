@@ -2,10 +2,9 @@
 # In this case, new code merged into the release branch initiates a new build.
 trigger:
 - release
-
 # Specify the OS for the agent
 pool:
-  name: Hosted Ubuntu 1604
+  name: Hosted Windows 2019
 
 # Install Python. The version must match the version on the Databricks cluster.
 steps:
