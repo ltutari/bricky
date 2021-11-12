@@ -8,7 +8,7 @@
       steps:
       - task: AzureMysqlDeployment@1
         inputs:
-          azureSubscription: 'ltutari(a88bbbea-5bb4-4a6a-ba66-01fe3ddb3dcb)'
+          azureSubscription: 'ltutari (a88bbbea-5bb4-4a6a-ba66-01fe3ddb3dcb)'
           ServerName: 'server00.mysql.database.azure.com'
           SqlUsername: 'Lohitha@server00'
           SqlPassword: '$(sqlPass)'
