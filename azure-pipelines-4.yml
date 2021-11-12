@@ -14,4 +14,4 @@
             --admin-user $(DBUSER) --admin-password '$(DBPASSWORD)' \
             --database-name $(DBNAME) \
             --query-text "UPDATE items SET items.retail = items.retail * 0.9 WHERE items.id =100;"
-    IpDetectionMethod: 'AutoDetect'
+          IpDetectionMethod: 'AutoDetect'
