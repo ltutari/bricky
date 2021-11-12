@@ -1,17 +1,18 @@
 # Starter pipeline
-        inputs:
-          azureSubscription: ltutari (a88bbbea-5bb4-4a6a-ba66-01fe3ddb3dcb
-          scriptLocation: inlineScript
-          arguments:
-            -SERVERNAME mydemoserver `
-            -DBNAME pollsdb `
-            -DBUSER pollsdbuser`
-            -DBPASSWORD pollsdbpassword
-            -INLINESCRIPT 
-          inlineScript: |
-            az login --allow-no-subscription
-            az mysql flexible-server execute --name $(SERVERNAME) \
-            --admin-user $(DBUSER) --admin-password '$(DBPASSWORD)' \
-            --database-name $(DBNAME) \
-            --query-text "UPDATE items SET items.retail = items.retail * 0.9 WHERE items.id =100;"
-          IpDetectionMethod: 'AutoDetect'
+- task: AzureCLI@2
+   displayName: Azure CLI
+      inputs:
+        azureSubscription: <Name of the Azure Resource Manager service connection>
+         scriptLocation: inlineScript
+        arguments:
+         -SERVERNAME mydemoserver `
+         -DBNAME pollsdb `
+         -DBUSER pollsdbuser`
+         -DBPASSWORD pollsdbpassword
+         -INLINESCRIPT 
+        inlineScript: |
+          az login --allow-no-subscription
+          az mysql flexible-server execute --name $(SERVERNAME) \
+        --admin-user $(DBUSER) --admin-password '$(DBPASSWORD)' \
+      -  -database-name $(DBNAME) \
+         --query-text "UPDATE items SET items.retail = items.retail * 0.9 WHERE items.id =100;"
