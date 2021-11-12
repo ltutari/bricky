@@ -1,7 +1,5 @@
 # Starter pipeline
-
-  |
-      trigger:
+    trigger:
       - main
       
       pool:
