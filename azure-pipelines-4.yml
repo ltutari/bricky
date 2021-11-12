@@ -1,13 +1,4 @@
 # Starter pipeline
-  inputs:
-    azureSubscription: 'ltutari (a88bbbea-5bb4-4a6a-ba66-01fe3ddb3dcb)'
-    ServerName: 'server01.mysql.database.azure.com'
-    SqlUsername: 'Lohitha'
-    SqlPassword: 'Pa$$w0rd'
-    TaskNameSelector: 'InlineSqlTask'
-    SqlInline: |
-      - task: AzureCLI@2
-        displayName: Azure CLI
         inputs:
           azureSubscription: ltutari (a88bbbea-5bb4-4a6a-ba66-01fe3ddb3dcb
           scriptLocation: inlineScript
