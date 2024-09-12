@@ -1,19 +1,16 @@
 # Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-- main
-
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+      inputs:
+        azureSubscription: <Name of the Azure Resource Manager service connection>
+        scriptLocation: inlineScript
+        arguments:
+         -SERVERNAME mydemoserver `
+         -DBNAME pollsdb `
+         -DBUSER pollsdbuser`
+         -DBPASSWORD pollsdbpassword
+         -INLINESCRIPT 
+        SqlInline: |
+          az login --allow-no-subscription
+          az mysql flexible-server execute --name $(SERVERNAME) \
+         --admin-user $(DBUSER) --admin-password '$(DBPASSWORD)' \
+         --database-name $(DBNAME) \
+         --query-text "UPDATE items SET items.retail = items.retail * 0.9 WHERE items.id =100;"
